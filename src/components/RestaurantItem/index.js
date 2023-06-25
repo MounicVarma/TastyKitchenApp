@@ -7,8 +7,8 @@ const RestaurantItem = props => {
   const {restaurantDetails} = props
   const {userRating, name, cuisine, id, imageUrl} = restaurantDetails
   return (
-    <Link to={`/restaurant/${id}`} className="link">
-      <li className="list_item" testid="restaurant-item">
+    <li className="list_item" testid="restaurant-item">
+      <Link to={`/restaurant/${id}`} className="link">
         <img src={imageUrl} className="restaurant_img" alt="restaurant" />
         <div>
           <h1 className="restaurant_heading">{name}</h1>
@@ -19,8 +19,8 @@ const RestaurantItem = props => {
             <p className="rating">{`(${userRating.totalReviews} ratings)`}</p>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   )
 }
 

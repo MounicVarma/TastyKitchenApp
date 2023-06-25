@@ -33,6 +33,7 @@ class Header extends Component {
     const {path} = match
     const homeActive = path === '/' ? 'color' : ''
     const cartActive = path === '/cart' ? 'color' : ''
+    const profileActive = path === '/profile' ? 'color' : ''
     return (
       <div className="nav_mobile_container">
         <ul className="nav_unOrder_list_container">
@@ -41,6 +42,9 @@ class Header extends Component {
           </Link>
           <Link to="/cart" className="nav_link">
             <li className={`list_item_heading ${cartActive}`}>Cart</li>
+          </Link>
+          <Link to="/profile" className="nav_link">
+            <li className={`list_item_heading ${profileActive}`}>Profile</li>
           </Link>
           <button
             type="button"
@@ -67,6 +71,7 @@ class Header extends Component {
     const {path} = match
     const homeActive = path === '/' ? 'color' : ''
     const cartActive = path === '/cart' ? 'color' : ''
+    const profileActive = path === '/profile' ? 'color' : ''
     return (
       <>
         <nav className="nav_container">
@@ -94,6 +99,11 @@ class Header extends Component {
               </Link>
               <Link to="/cart" className="nav_link">
                 <li className={`list_item_heading ${cartActive}`}>Cart</li>
+              </Link>
+              <Link to="/profile" className="nav_link">
+                <li className={`list_item_heading ${profileActive}`}>
+                  Profile
+                </li>
               </Link>
               <button
                 type="button"

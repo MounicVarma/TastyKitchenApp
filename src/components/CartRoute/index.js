@@ -1,4 +1,3 @@
-import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -7,8 +6,8 @@ import CartSummary from '../CartSummary'
 import FoodCartContext from '../../context/FoodCartContext'
 import './index.css'
 
-class Cart extends Component {
-  renderPaymentSuccessView = closePaymentSuccess => {
+const CartRoute = () => {
+  const renderPaymentSuccessView = closePaymentSuccess => {
     const onClickGoToHomePage = () => {
       closePaymentSuccess()
     }
@@ -38,7 +37,7 @@ class Cart extends Component {
     )
   }
 
-  renderCartItemList = foodCartItemList => {
+  const renderCartItemList = foodCartItemList => {
     if (foodCartItemList.length === 0) {
       return (
         <div className="payment_container">
@@ -47,7 +46,7 @@ class Cart extends Component {
             alt="empty cart"
             className="no_order_img"
           />
-          <h1 className="payment_heading">No Order Yet! </h1>
+          <h1 className="payment_heading">No Order Yet!</h1>
           <p className="payment_para">
             Your cart is empty. Add something from the menu.
           </p>
@@ -79,24 +78,22 @@ class Cart extends Component {
     )
   }
 
-  render() {
-    return (
-      <FoodCartContext.Consumer>
-        {value => {
-          const {isOrderPlaced, closePaymentSuccess, foodCartItemList} = value
+  return (
+    <FoodCartContext.Consumer>
+      {value => {
+        const {isOrderPlaced, closePaymentSuccess, foodCartItemList} = value
 
-          return (
-            <div className="cart_container">
-              <Header />
-              {isOrderPlaced
-                ? this.renderPaymentSuccessView(closePaymentSuccess)
-                : this.renderCartItemList(foodCartItemList)}
-            </div>
-          )
-        }}
-      </FoodCartContext.Consumer>
-    )
-  }
+        return (
+          <div className="cart_container">
+            <Header />
+            {isOrderPlaced
+              ? renderPaymentSuccessView(closePaymentSuccess)
+              : renderCartItemList(foodCartItemList)}
+          </div>
+        )
+      }}
+    </FoodCartContext.Consumer>
+  )
 }
 
-export default Cart
+export default CartRoute

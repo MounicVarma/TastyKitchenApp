@@ -5,12 +5,13 @@ import HomeRoute from './components/HomeRoute'
 import CartRoute from './components/CartRoute'
 import NotFound from './components/NotFound'
 import SpecificRestaurantDetailsRoute from './components/SpecificRestaurantDetailsRoute'
+import ProfileRoute from './components/ProfileRoute'
 import ProtectedRoute from './components/ProtectedRoute'
 import FoodCartContext from './context/FoodCartContext'
 import './App.css'
 
 const initializeFoodCartItem = () => {
-  const cartItem = localStorage.getItem('foodCardData')
+  const cartItem = localStorage.getItem('cartData')
 
   if (cartItem === null) {
     return []
@@ -104,7 +105,7 @@ class App extends Component {
   addOrUpdateLocalStorage = () => {
     const {foodCartItemList} = this.state
 
-    localStorage.setItem('foodCardData', JSON.stringify(foodCartItemList))
+    localStorage.setItem('cartData', JSON.stringify(foodCartItemList))
   }
 
   render() {
@@ -131,6 +132,7 @@ class App extends Component {
             component={SpecificRestaurantDetailsRoute}
           />
           <ProtectedRoute exact path="/cart" component={CartRoute} />
+          <ProtectedRoute exact path="/profile" component={ProfileRoute} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="/not-found" />
         </Switch>

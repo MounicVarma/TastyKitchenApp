@@ -7,6 +7,7 @@ import {BiRupee} from 'react-icons/bi'
 import Header from '../Header'
 import Footer from '../Footer'
 import FoodItem from '../FoodItem'
+import FoodTypeButtons from '../FoodTypeButtons'
 import './index.css'
 
 const apiSpecificRestaurantStatusConstants = {
@@ -16,11 +17,23 @@ const apiSpecificRestaurantStatusConstants = {
   inProgress: 'IN PROGRESS',
 }
 
+const foodTypeDetailsList = [
+  {
+    displayText: 'Veg',
+    optionId: 'VEG',
+  },
+  {
+    displayText: 'Non-Veg',
+    optionId: 'NON-VEG',
+  },
+]
+
 class SpecificRestaurantDetailsRoute extends Component {
   state = {
     apiSpecificRestaurantStatus: apiSpecificRestaurantStatusConstants.initial,
     specificRestaurantDetails: {},
     foodItems: [],
+    activeId: '',
   }
 
   componentDidMount() {
@@ -46,6 +59,7 @@ class SpecificRestaurantDetailsRoute extends Component {
     const response = await fetch(restaurantDetailsUrl, options)
     if (response.ok === true) {
       const data = await response.json()
+      console.log(data)
       const updatedSpecificData = {
         rating: data.rating,
         id: data.id,
@@ -106,8 +120,21 @@ class SpecificRestaurantDetailsRoute extends Component {
     </div>
   )
 
+  changeFoodType = id => {
+    const {activeId} = this.state
+    if (activeId === id) {
+      this.setState({
+        activeId: '',
+      })
+    } else {
+      this.setState({
+        activeId: id,
+      })
+    }
+  }
+
   renderSuccessView = () => {
-    const {specificRestaurantDetails, foodItems} = this.state
+    const {specificRestaurantDetails, activeId, foodItems} = this.state
     const {
       rating,
       name,
@@ -117,6 +144,13 @@ class SpecificRestaurantDetailsRoute extends Component {
       reviewsCount,
       location,
     } = specificRestaurantDetails
+    let filteredFoodItems
+    if (activeId === '') {
+      filteredFoodItems = foodItems
+    } else {
+      filteredFoodItems = foodItems.filter(list => list.foodType === activeId)
+    }
+    console.log(filteredFoodItems)
     return (
       <>
         <div className="restaurant_banner_card">
@@ -152,8 +186,18 @@ class SpecificRestaurantDetailsRoute extends Component {
             </div>
           </div>
         </div>
+        <ul className="food_type_button_container">
+          {foodTypeDetailsList.map(eachButton => (
+            <FoodTypeButtons
+              buttonDetails={eachButton}
+              key={eachButton.optionId}
+              isActive={activeId === eachButton.optionId}
+              changeFoodType={this.changeFoodType}
+            />
+          ))}
+        </ul>
         <ul className="unOrder_food_item_list">
-          {foodItems.map(eachItem => (
+          {filteredFoodItems.map(eachItem => (
             <FoodItem foodDetails={eachItem} key={eachItem.id} />
           ))}
         </ul>

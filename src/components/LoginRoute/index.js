@@ -104,10 +104,10 @@ class LoginRoute extends Component {
         <div className="login_mobile_card">
           <img
             src="https://res.cloudinary.com/dpa9t5hi6/image/upload/v1686293797/login-sm-img_fttmok.jpg"
-            alt="website login"
+            alt="website log"
             className="login_mobile_container_img"
           />
-          <h1 className="login_mobile_container_heading">Login</h1>
+          <p className="login_mobile_container_heading">Login</p>
         </div>
         <div className="login_tablet_container">
           <div className="login_tablet_card">

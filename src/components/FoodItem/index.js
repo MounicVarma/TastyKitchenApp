@@ -9,7 +9,7 @@ import './index.css'
 class FoodItem extends Component {
   render() {
     const {foodDetails} = this.props
-    const {name, cost, imageUrl, id, rating} = foodDetails
+    const {name, cost, imageUrl, foodType, id, rating} = foodDetails
     return (
       <FoodCartContext.Consumer>
         {value => {
@@ -25,6 +25,19 @@ class FoodItem extends Component {
             <li className="food_item_list" testid="foodItem">
               <img src={imageUrl} alt={name} className="food_item_img" />
               <div>
+                {foodType === 'VEG' ? (
+                  <img
+                    src="https://res.cloudinary.com/dpa9t5hi6/image/upload/v1687155970/vegIcon_werr2h.jpg"
+                    alt="Veg Icon"
+                    className="food_type_icon_img"
+                  />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dpa9t5hi6/image/upload/v1687156027/nonVegIcon_jqpfbp.jpg"
+                    alt="Non-Veg Icon"
+                    className="food_type_icon_img"
+                  />
+                )}
                 <h1 className="food_item_heading">{name}</h1>
                 <div className="food_item_cost_container">
                   <BiRupee size={12} color="#334155" />

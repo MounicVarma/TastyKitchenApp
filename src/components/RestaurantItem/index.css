@@ -1,18 +1,19 @@
 .link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   width: 100%;
 }
 
 .list_item {
-  display: flex;
-  align-items: center;
   margin-bottom: 24px;
   width: 100%;
 }
 
 @media screen and (min-width: 768px) {
-  .link {
-    width: 31%;
+  .list_item {
+    width: 50%;
+    padding-right: 20px;
   }
 }
 

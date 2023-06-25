@@ -19,20 +19,28 @@ const Footer = () => (
     <p className="footer_para">
       The only thing we are serious about is food. <br /> Contact us on
     </p>
-    <div className="footer_react_icon_container">
-      <FaPinterestSquare
-        size={25}
-        color="#ffffff"
-        testid="pintrest-social-icon"
-      />
-      <FaInstagram size={25} color="#ffffff" testid="instagram-social-icon" />
-      <FaTwitter size={25} color="#ffffff" testid="twitter-social-icon" />
-      <FaFacebookSquare
-        size={25}
-        color="#ffffff"
-        testid="facebook-social-icon"
-      />
-    </div>
+    <ul className="footer_react_icon_container">
+      <li>
+        <FaPinterestSquare
+          size={25}
+          color="#ffffff"
+          testid="pintrest-social-icon"
+        />
+      </li>
+      <li>
+        <FaInstagram size={25} color="#ffffff" testid="instagram-social-icon" />
+      </li>
+      <li>
+        <FaTwitter size={25} color="#ffffff" testid="twitter-social-icon" />
+      </li>
+      <li>
+        <FaFacebookSquare
+          size={25}
+          color="#ffffff"
+          testid="facebook-social-icon"
+        />
+      </li>
+    </ul>
   </div>
 )
 
